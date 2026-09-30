@@ -51,7 +51,7 @@ if argument == "--list" {
   exit(0)
 }
 
-let requested = argument == "toggle" ? (current == 2 ? 1 : 2) : supportedCommands[argument]
+let requested = argument == "toggle" ? (current == 2 ? 3 : 2) : supportedCommands[argument]
 guard var target = requested else {
   let usage = (supportedCommands.keys.sorted() + ["toggle", "--list"]).joined(separator: "|")
   FileHandle.standardError.write("usage: anc [\(usage)]\n".data(using: .utf8)!)

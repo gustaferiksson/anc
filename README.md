@@ -12,7 +12,7 @@ anc on             # noise cancellation
 anc off            # off (no noise control)
 anc transparency
 anc adaptive       # only on models that support it
-anc toggle         # noise cancellation <-> off
+anc toggle         # noise cancellation <-> transparency
 anc --list         # modes this device supports, * marks the current one
 ```
 

@@ -13,6 +13,7 @@ anc off            # off (no noise control)
 anc transparency
 anc adaptive       # only on models that support it
 anc toggle         # noise cancellation <-> off
+anc --list         # modes this device supports, * marks the current one
 ```
 
 Modes the connected device doesn't support are rejected.

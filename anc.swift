@@ -44,9 +44,16 @@ guard let argument else {
   exit(0)
 }
 
+if argument == "--list" {
+  for (name, mode) in supportedCommands.sorted(by: { $0.value < $1.value }) {
+    print(mode == current ? "* \(name)" : "  \(name)")
+  }
+  exit(0)
+}
+
 let requested = argument == "toggle" ? (current == 2 ? 1 : 2) : supportedCommands[argument]
 guard var target = requested else {
-  let usage = (supportedCommands.keys.sorted() + ["toggle"]).joined(separator: "|")
+  let usage = (supportedCommands.keys.sorted() + ["toggle", "--list"]).joined(separator: "|")
   FileHandle.standardError.write("usage: anc [\(usage)]\n".data(using: .utf8)!)
   exit(2)
 }

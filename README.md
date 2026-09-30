@@ -7,7 +7,8 @@ brew install gustaferiksson/tap/anc
 ```
 
 ```sh
-anc                # print the current mode
+anc                # noise cancellation <-> transparency
+anc status         # print the current mode
 anc on             # noise cancellation
 anc off            # off (no noise control)
 anc transparency

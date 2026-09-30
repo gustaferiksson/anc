@@ -38,8 +38,8 @@ var supportedMask: UInt32 = 0
 AudioObjectGetPropertyData(device, &supportedModesAddress, 0, nil, &modeSize, &supportedMask)
 let supportedCommands = commands.filter { $0.value == 1 || supportedMask & (1 << ($0.value - 2)) != 0 }
 
-let argument = CommandLine.arguments.dropFirst().first
-guard let argument else {
+let argument = CommandLine.arguments.dropFirst().first ?? "toggle"
+if argument == "status" {
   print(modeNames[current] ?? "unknown (\(current))")
   exit(0)
 }
@@ -53,7 +53,7 @@ if argument == "--list" {
 
 let requested = argument == "toggle" ? (current == 2 ? 3 : 2) : supportedCommands[argument]
 guard var target = requested else {
-  let usage = (supportedCommands.keys.sorted() + ["toggle", "--list"]).joined(separator: "|")
+  let usage = (supportedCommands.keys.sorted() + ["toggle", "status", "--list"]).joined(separator: "|")
   FileHandle.standardError.write("usage: anc [\(usage)]\n".data(using: .utf8)!)
   exit(2)
 }
